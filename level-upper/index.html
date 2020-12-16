@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="title-bar">
+        <h1 id="title">Semi-automated processing</h1>
+
+    </div>
+    <form>
+        <h2 class="section-title">Webcam</h2>
+        <div class="button-box">
+            <button type="button" class="btn btn-primary" id="camToggle">Start Camera</button>
+        </div>
+        <div id="video-container">
+            <video autoplay="true" class="img-fluid" width="100%" height="100%" id="videoElement">
+
+            </video>
+        </div>
+        <div class="button-box">
+            <button type="button" class="btn btn-primary" id="camFunctional">Webcam Functional</button>
+            <button type="button" class="btn btn-primary" id="camNonFunctional">Webcam Non-Functional</button>
+        </div>
+
+        <hr>
+        <h2 class="section-title">Audio</h2>
+        <p>
+            The audio test uses the microphone to record a 3-second audio clip and then plays the clip back.
+            <br>
+            <br>
+            Run the test twice: once without headphones connected and once with headphones connected.
+        </p>
+
+        <hr>
+        <hr>
+        <div id="results">
+            Camera: <div id="camResults" style="display: inline;">Not Tested</div>
+            <br>
+            Audio:
+
+        </div>
+    </form>
+
+
+
+
+
+
+</body>
+<style>
+    #results {
+        font-size: x-large;
+    }
+
+    .button-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .btn {
+        margin: 10px;
+    }
+
+    #video-container {
+        background-color: hsl(0, 0%, 90%);
+        padding: 5%;
+        height: 400px;
+    }
+
+    .section-title {
+        text-align: center;
+    }
+
+    #title {
+        padding: 20px;
+        margin: 0;
+    }
+
+    #title-bar {
+        vertical-align: middle;
+        text-align: center;
+        width: 100%;
+        height: 100px;
+        background-color: white;
+    }
+
+    body {
+        background-color: hsl(0, 0%, 95%)
+    }
+
+    form {
+        padding-top: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 300px;
+        width: 30%;
+        max-width: 600px;
+    }
+</style>
+<script type="text/javascript" src="js/level_upper.js"></script>
+
+</html>
