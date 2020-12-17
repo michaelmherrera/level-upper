@@ -1,5 +1,6 @@
 var stream = null;
 var camActive = false;
+var micActice = false;
 function testCam() {
     if (camActive) {
         return;
@@ -12,9 +13,14 @@ function testCam() {
             .then(function (stream) {
             // Stop the camera
             document.getElementById("camToggle").addEventListener("click", function () {
+                if (!camActive) {
+                    return;
+                }
                 stream.getTracks().forEach(function (track) {
                     if (track.readyState == 'live' && track.kind === 'video') {
                         track.stop();
+                        document.getElementById("camToggle").innerHTML = "Start Camera";
+                        camActive = false;
                     }
                 });
             });
@@ -26,24 +32,45 @@ function testCam() {
     }
 }
 function testAudio() {
+    if (micActice) {
+        return;
+    }
+    document.getElementById("micToggle").innerHTML = "Stop Recording";
+    micActice = true;
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(function (stream) {
-            var mediaRecorder = new MediaRecorder(stream);
+            var mediaRecorder = new MediaRecorder(stream, { audioBitsPerSecond: 200000 });
             mediaRecorder.start();
             var audioChunks = [];
             mediaRecorder.addEventListener("dataavailable", function (event) {
                 audioChunks.push(event.data);
             });
-            mediaRecorder.addEventListener("stop", function () {
+            document.getElementById("playRecording").addEventListener("click", function () {
+                document.getElementById("playRecording").innerHTML = "Playing recording...";
                 var audioBlob = new Blob(audioChunks);
                 var audioUrl = URL.createObjectURL(audioBlob);
                 var audio = new Audio(audioUrl);
                 audio.play();
+                audio.onended = function () {
+                    document.getElementById("playRecording").innerHTML = "Play Recording";
+                };
+                audioChunks = [];
             });
-            setTimeout(function () {
+            document.getElementById("micToggle").addEventListener("click", function () {
+                if (!micActice) {
+                    return;
+                }
+                stream.getTracks().forEach(function (track) {
+                    if (track.readyState == 'live' && track.kind === 'audio') {
+                        track.stop();
+                        document.getElementById("micToggle").innerHTML = "Start Recording";
+                        micActice = false;
+                    }
+                });
                 mediaRecorder.stop();
-            }, 3000);
+                mediaRecorder = null;
+            });
         });
     }
 }
@@ -54,5 +81,5 @@ document.getElementById("camFunctional").addEventListener("click", function () {
 document.getElementById("camNonFunctional").addEventListener("click", function () {
     document.getElementById("camResults").innerHTML = "Non-Functional";
 });
-//document.getElementById("stopVid").addEventListener("click", stopVideo)
+document.getElementById("micToggle").addEventListener("click", testAudio);
 //testAudio()

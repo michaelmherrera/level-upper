@@ -18,6 +18,29 @@
     </div>
     <form>
         <h2 class="section-title">Webcam</h2>
+
+        <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#webcamInstructions"
+                aria-expanded="false" aria-controls="webcamInstructions" style="font-size: large">
+                Instructions
+            </button>
+        </h5>
+
+        <div class="collapse" id="webcamInstructions">
+            <div class="card card-body">
+                <p>
+                <ol>
+                    <li> Click "Start Camera" and accept the site's request to use your camera. </li>
+                    <li> If the camera is functional, a live feed should appear below. In this case,
+                        click "Webcam Functional." </li>
+                    <li> If the live feed does not appear within 10 sec, the camera is likely not functional.
+                        In this case, click, "Webcam Non-Functional"
+                    </li>
+                </ol>
+                </p>
+            </div>
+        </div>
+
         <div class="button-box">
             <button type="button" class="btn btn-primary" id="camToggle">Start Camera</button>
         </div>
@@ -31,17 +54,42 @@
             <button type="button" class="btn btn-primary" id="camNonFunctional">Webcam Non-Functional</button>
         </div>
 
-        <hr>
-        <h2 class="section-title">Audio</h2>
-        <p>
-            The audio test uses the microphone to record a 3-second audio clip and then plays the clip back.
-            <br>
-            <br>
-            Run the test twice: once without headphones connected and once with headphones connected.
-        </p>
 
-        <hr>
-        <hr>
+
+        <br>
+        <br>
+
+        <h2 class="section-title">Audio</h2>
+        <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#audioInstructions"
+                aria-expanded="false" aria-controls="audioInstructions" style="font-size: large">
+                Instructions
+            </button>
+        </h5>
+
+        <div class="collapse" id="audioInstructions">
+            <div class="card card-body">
+                <p>
+                    Run the test twice: once without headphones connected and once with headphones connected.
+                    <ol>
+                        <li>Click "Start Recording" and accept the site's request to use the microphone.</li>
+                        <li>Wait 2 sec for recording to start, then speak for a few seconds.</li>
+                        <li>Click "Stop Recording", the click "Play Recording"</li>
+                
+                    </ol>
+                </p>
+            </div>
+        </div>
+
+        <div class="button-box">
+            <button type="button" class="btn btn-primary" id="micToggle">Start Recording</button>
+            <button type="button" class="btn btn-primary" id="playRecording">Play Recording</button>
+        </div>
+
+       
+
+        <br>
+        <br>
         <div id="results">
             Camera: <div id="camResults" style="display: inline;">Not Tested</div>
             <br>
@@ -50,6 +98,13 @@
         </div>
     </form>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
 
 
 
@@ -57,6 +112,22 @@
 
 </body>
 <style>
+    p {
+        font-size: large;
+    }
+
+    ol {
+        font-size: large;
+    }
+
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 2px solid grey;
+        border-radius: 1px;
+    }
+
     #results {
         font-size: x-large;
     }
@@ -66,7 +137,7 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .btn {
         margin: 10px;
     }
@@ -103,9 +174,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        min-width: 300px;
-        width: 30%;
-        max-width: 600px;
+        max-width: 700px;
     }
 </style>
 <script type="text/javascript" src="js/level_upper.js"></script>

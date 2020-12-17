@@ -1,5 +1,6 @@
 let stream: MediaStream = null
 let camActive: boolean = false
+let micActice: boolean = false
 
 function testCam() {
     if (camActive) {
@@ -15,9 +16,14 @@ function testCam() {
 
                 // Stop the camera
                 document.getElementById("camToggle").addEventListener("click", () => {
+                    if (!camActive){
+                        return;
+                    }
                     stream.getTracks().forEach(function (track) {
                         if (track.readyState == 'live' && track.kind === 'video') {
                             track.stop();
+                            document.getElementById("camToggle").innerHTML = "Start Camera"
+                            camActive = false
                         }
                     });
                 });
@@ -35,28 +41,54 @@ function testCam() {
 
 
 function testAudio() {
+    if (micActice) { 
+        return;
+    }
+    document.getElementById("micToggle").innerHTML = "Stop Recording"
+    micActice = true
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(stream => {
-                const mediaRecorder: MediaRecorder = new MediaRecorder(stream);
+                var mediaRecorder: MediaRecorder = new MediaRecorder(stream, {audioBitsPerSecond: 200000});
                 mediaRecorder.start();
+                
 
-                const audioChunks: Blob[] = [];
+                var audioChunks: Blob[] = [];
 
                 mediaRecorder.addEventListener("dataavailable", event => {
                     audioChunks.push(event.data);
                 });
 
-                mediaRecorder.addEventListener("stop", () => {
+
+                document.getElementById("playRecording").addEventListener("click", () => {
+                    document.getElementById("playRecording").innerHTML = "Playing recording..."
                     const audioBlob = new Blob(audioChunks)
                     const audioUrl: string = URL.createObjectURL(audioBlob)
                     const audio = new Audio(audioUrl)
                     audio.play()
+                    audio.onended = function () {
+                        document.getElementById("playRecording").innerHTML = "Play Recording"
+                    };
+                    
+                    audioChunks = []
                 })
 
-                setTimeout(() => {
+                document.getElementById("micToggle").addEventListener("click", () => {
+                    if (!micActice){
+                        return;
+                    }
+                    stream.getTracks().forEach(function (track) {
+                        if (track.readyState == 'live' && track.kind === 'audio') {
+                            track.stop();
+                            document.getElementById("micToggle").innerHTML = "Start Recording"
+                            micActice = false
+                        }
+                    });
                     mediaRecorder.stop()
-                }, 3000)
+                    mediaRecorder = null;
+                });
+
+                
 
             });
     }
@@ -68,7 +100,7 @@ document.getElementById("camFunctional").addEventListener("click", () => {
 document.getElementById("camNonFunctional").addEventListener("click", () => {
     document.getElementById("camResults").innerHTML = "Non-Functional"
 });
-
+document.getElementById("micToggle").addEventListener("click", testAudio);
 //testAudio()
 
 
