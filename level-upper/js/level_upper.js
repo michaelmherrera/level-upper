@@ -1,6 +1,6 @@
-var stream = null;
-var camActive = false;
-var micActice = false;
+let stream = null;
+let camActive = false;
+let micActice = false;
 function testCam() {
     if (camActive) {
         return;
@@ -10,9 +10,9 @@ function testCam() {
     camActive = true;
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function (stream) {
+            .then(stream => {
             // Stop the camera
-            document.getElementById("camToggle").addEventListener("click", function () {
+            document.getElementById("camToggle").addEventListener("click", () => {
                 if (!camActive) {
                     return;
                 }
@@ -26,7 +26,7 @@ function testCam() {
             });
             video.srcObject = stream;
         })
-            .catch(function (er) {
+            .catch(er => {
             console.log("Something went wrong!");
         });
     }
@@ -39,25 +39,25 @@ function testAudio() {
     micActice = true;
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(function (stream) {
+            .then(stream => {
             var mediaRecorder = new MediaRecorder(stream, { audioBitsPerSecond: 200000 });
             mediaRecorder.start();
             var audioChunks = [];
-            mediaRecorder.addEventListener("dataavailable", function (event) {
+            mediaRecorder.addEventListener("dataavailable", event => {
                 audioChunks.push(event.data);
             });
-            document.getElementById("playRecording").addEventListener("click", function () {
+            document.getElementById("playRecording").addEventListener("click", () => {
                 document.getElementById("playRecording").innerHTML = "Playing recording...";
-                var audioBlob = new Blob(audioChunks);
-                var audioUrl = URL.createObjectURL(audioBlob);
-                var audio = new Audio(audioUrl);
+                const audioBlob = new Blob(audioChunks);
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const audio = new Audio(audioUrl);
                 audio.play();
                 audio.onended = function () {
                     document.getElementById("playRecording").innerHTML = "Play Recording";
                 };
                 audioChunks = [];
             });
-            document.getElementById("micToggle").addEventListener("click", function () {
+            document.getElementById("micToggle").addEventListener("click", () => {
                 if (!micActice) {
                     return;
                 }
@@ -75,11 +75,27 @@ function testAudio() {
     }
 }
 document.getElementById("camToggle").addEventListener("click", testCam);
-document.getElementById("camFunctional").addEventListener("click", function () {
-    document.getElementById("camResults").innerHTML = "Functional";
+document.getElementById("camFunctional").addEventListener("click", () => {
+    document.getElementById("CamResults").innerHTML = "Functional";
 });
-document.getElementById("camNonFunctional").addEventListener("click", function () {
-    document.getElementById("camResults").innerHTML = "Non-Functional";
+document.getElementById("camNonFunctional").addEventListener("click", () => {
+    document.getElementById("CamResults").innerHTML = "Non-Functional";
 });
 document.getElementById("micToggle").addEventListener("click", testAudio);
 //testAudio()
+var elements = document.getElementsByClassName("btn btn-primary btn-sm prop");
+for (let elem of elements) {
+    elem.addEventListener("click", event => {
+        // Get the element that triggered the event
+        var triggeringElem = event.target;
+        // Get the value of the property with which the copy button is associated
+        var propVal = triggeringElem.parentElement.children[1].innerHTML;
+        // Created a dummy input so that the value can be copied to the clipboard
+        var tempInput = document.createElement("input");
+        tempInput.value = propVal;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+    });
+}

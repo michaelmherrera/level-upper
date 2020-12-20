@@ -95,12 +95,31 @@ function testAudio() {
 }
 document.getElementById("camToggle").addEventListener("click", testCam)
 document.getElementById("camFunctional").addEventListener("click", () => {
-    document.getElementById("camResults").innerHTML = "Functional"
+    document.getElementById("CamResults").innerHTML = "Functional"
 });
 document.getElementById("camNonFunctional").addEventListener("click", () => {
-    document.getElementById("camResults").innerHTML = "Non-Functional"
+    document.getElementById("CamResults").innerHTML = "Non-Functional"
 });
 document.getElementById("micToggle").addEventListener("click", testAudio);
 //testAudio()
+
+var elements = document.getElementsByClassName("btn btn-primary btn-sm prop");
+for (let elem of elements){
+    elem.addEventListener("click", event =>{
+        // Get the element that triggered the event
+        var triggeringElem: Element = (<Element>event.target)
+        // Get the value of the property with which the copy button is associated
+        var propVal = triggeringElem.parentElement.children[1].innerHTML;
+
+        // Created a dummy input so that the value can be copied to the clipboard
+        var tempInput = document.createElement("input");
+        tempInput.value = propVal;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+    })
+}
+
 
 
