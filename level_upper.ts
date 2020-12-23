@@ -103,6 +103,8 @@ document.getElementById("camNonFunctional").addEventListener("click", () => {
 document.getElementById("micToggle").addEventListener("click", testAudio);
 //testAudio()
 
+
+// Implements buttons to copy property values
 var elements = document.getElementsByClassName("btn btn-primary btn-sm prop");
 for (let elem of elements){
     elem.addEventListener("click", event =>{
