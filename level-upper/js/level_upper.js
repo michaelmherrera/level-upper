@@ -74,28 +74,55 @@ function testAudio() {
         });
     }
 }
-document.getElementById("camToggle").addEventListener("click", testCam);
-document.getElementById("camFunctional").addEventListener("click", () => {
-    document.getElementById("CamResults").innerHTML = "Functional";
-});
-document.getElementById("camNonFunctional").addEventListener("click", () => {
-    document.getElementById("CamResults").innerHTML = "Non-Functional";
-});
-document.getElementById("micToggle").addEventListener("click", testAudio);
-//testAudio()
-var elements = document.getElementsByClassName("btn btn-primary btn-sm prop");
-for (let elem of elements) {
-    elem.addEventListener("click", event => {
-        // Get the element that triggered the event
-        var triggeringElem = event.target;
-        // Get the value of the property with which the copy button is associated
-        var propVal = triggeringElem.parentElement.children[1].innerHTML;
-        // Created a dummy input so that the value can be copied to the clipboard
-        var tempInput = document.createElement("input");
-        tempInput.value = propVal;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempInput);
+function registerEventListeners() {
+    document.getElementById("camToggle").addEventListener("click", testCam);
+    document.getElementById("camFunctional").addEventListener("click", () => {
+        document.getElementById("CamResults").getElementsByClassName("val")[0].innerHTML = "Functional";
+    });
+    document.getElementById("camNonFunctional").addEventListener("click", () => {
+        document.getElementById("CamResults").getElementsByClassName("val")[0].innerHTML = "Functional";
+    });
+    document.getElementById("micToggle").addEventListener("click", testAudio);
+}
+function registerCopyButtons() {
+    var elements = document.getElementsByClassName("btn btn-primary btn-sm prop");
+    for (let elem of elements) {
+        elem.addEventListener("click", event => {
+            // Get the element that triggered the event
+            var triggeringElem = event.target;
+            // Get the value of the property with which the copy button is associated
+            var propVal = triggeringElem.parentElement.children[1].innerHTML;
+            // Created a dummy input so that the value can be copied to the clipboard
+            var tempInput = document.createElement("input");
+            tempInput.value = propVal;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+        });
+    }
+}
+function getDeviceInfo() {
+    fetch('/data.json')
+        .then(response => response.json())
+        .then(data => {
+        let fields = [
+            "CPUSpecs",
+            "CPUModel",
+            "Memory",
+            "BatteryHealth",
+            "HDCapacity",
+            "SerialNumber",
+            "DeviceModel",
+            "DeviceFamily",
+            "DeviceSKU"
+        ];
+        for (const i in fields) {
+            let fieldName = fields[i];
+            document.getElementById(fieldName).innerHTML = data[fieldName];
+        }
     });
 }
+registerEventListeners();
+registerCopyButtons();
+getDeviceInfo();
