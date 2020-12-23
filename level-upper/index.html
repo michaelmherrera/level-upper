@@ -24,6 +24,7 @@
                 aria-expanded="false" aria-controls="webcamInstructions" style="font-size: large">
                 Instructions
             </button>
+            
         </h5>
 
         <div class="collapse" id="webcamInstructions">
@@ -44,16 +45,17 @@
         <div class="button-box">
             <button type="button" class="btn btn-primary btn-lg btn-block" id="camToggle">Start Camera</button>
         </div>
+        <div class="button-box">
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="camFunctional" style="background-color: #00B74A; color: white;">Webcam Functional</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="camNonFunctional" style="background-color: #F93154; color: white;">Webcam Non-Functional</button>
+        </div>
         <div id="video-container">
   
             <video autoplay="true" class="img-fluid" width="100%" height="100%" id="videoElement">
 
             </video>
         </div>
-        <div class="button-box">
-            <button type="button" class="btn btn-primary" id="camFunctional">Webcam Functional</button>
-            <button type="button" class="btn btn-primary" id="camNonFunctional">Webcam Non-Functional</button>
-        </div>
+        
 
 
 
@@ -83,8 +85,12 @@
         </div>
 
         <div class="button-box">
-            <button type="button" class="btn btn-primary" id="micToggle">Start Recording</button>
-            <button type="button" class="btn btn-primary" id="playRecording">Play Recording</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="micToggle">Start Recording</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="playRecording">Play Recording</button>
+        </div>
+        <div class="button-box">
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="audioFunctional" style="background-color: #00B74A; color: white;">Audio Functional</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="audioNonFunctional" style="background-color: #F93154; color: white;">Audio Non-Functional</button>
         </div>
 
        

@@ -98,7 +98,13 @@ function registerEventListeners() {
         document.getElementById("CamResults").getElementsByClassName("val")[0].innerHTML = "Functional"
     });
     document.getElementById("camNonFunctional").addEventListener("click", () => {
-        document.getElementById("CamResults").getElementsByClassName("val")[0].innerHTML = "Functional"
+        document.getElementById("CamResults").getElementsByClassName("val")[0].innerHTML = "Non-Functional"
+    });
+    document.getElementById("audioFunctional").addEventListener("click", () => {
+        document.getElementById("AudioResults").getElementsByClassName("val")[0].innerHTML = "Functional"
+    });
+    document.getElementById("audioNonFunctional").addEventListener("click", () => {
+        document.getElementById("AudioResults").getElementsByClassName("val")[0].innerHTML = "Non-Functional"
     });
     document.getElementById("micToggle").addEventListener("click", testAudio);
 }
@@ -140,7 +146,7 @@ function getDeviceInfo(){
             ]
             for (const i in fields) {
                 let fieldName: string = fields[i]
-                document.getElementById(fieldName).innerHTML = data[fieldName]
+                document.getElementById(fieldName).getElementsByClassName("val")[0].innerHTML  = data[fieldName]
             }
         });
 }
