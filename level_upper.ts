@@ -106,7 +106,15 @@ function registerEventListeners() {
     document.getElementById("audioNonFunctional").addEventListener("click", () => {
         document.getElementById("AudioResults").getElementsByClassName("val")[0].innerHTML = "Non-Functional"
     });
+    document.getElementById("keyboardFunctional").addEventListener("click", () => {
+        document.getElementById("KeyboardResults").getElementsByClassName("val")[0].innerHTML = "Functional"
+    });
+    document.getElementById("keyboardNonFunctional").addEventListener("click", () => {
+        document.getElementById("KeyboardResults").getElementsByClassName("val")[0].innerHTML = "Non-Functional"
+    });
+
     document.getElementById("micToggle").addEventListener("click", testAudio);
+    
 }
 
 function registerCopyButtons() {

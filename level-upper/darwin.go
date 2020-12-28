@@ -41,7 +41,7 @@ func getProductSpecs(profileJSON *map[string][](map[string]interface{}), info *S
 	hardwareInfo := (*profileJSON)["SPHardwareDataType"][0]
 	info.SerialNumber = hardwareInfo["serial_number"].(string)
 	info.DeviceModel = hardwareInfo["machine_model"].(string)
-	info.DeviceFamily = "Not implemented on MacOS :("
+	info.DeviceFamily = "Starts with an A (ex: A1176). Found on bottom of device."
 	info.DeviceSKU = "Not implemented on MacOS :("
 }
 
