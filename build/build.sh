@@ -26,11 +26,23 @@ GOARCH=amd64 go build -ldflags="-s -w" .
 mv levelup levelup.exe $ROOT/bin
 cd $ROOT
 
+# Compress the binaries
+FLAG="--no-compress"
+if [ "$1" != "$FLAG" ]
+then
+    cd $ROOT/bin
+    ls
+    upx --best levelup.exe levelup
+    cd $ROOT
+fi
+
 # Turn the macOS binary into a .app
 cd $ROOT/bin
 appify -name "Levelup" -icon $ROOT/assets/streetcode.png $ROOT/bin/levelup 
 rm levelup
 cd $ROOT
+
+
 
 # Clean up
 rm -r tmp-files

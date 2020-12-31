@@ -93,7 +93,7 @@ func inlinedHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "inlined.html", size: 13408, mode: os.FileMode(420), modTime: time.Unix(1609442154, 0)}
+	info := bindataFileInfo{name: "inlined.html", size: 13408, mode: os.FileMode(420), modTime: time.Unix(1609443835, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
