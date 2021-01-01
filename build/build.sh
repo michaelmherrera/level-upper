@@ -41,6 +41,7 @@ cd $ROOT/bin
 appify -name "Levelup" -icon $ROOT/assets/streetcode.png $ROOT/bin/levelup 
 rm levelup
 zip -r levelup_mac.zip Levelup.app
+rm -r Levelup.app
 cd $ROOT
 
 
