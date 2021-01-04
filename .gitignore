@@ -4,3 +4,4 @@ package-lock.json
 .DS_Store
 bin/
 cmd/levelup/bindata.go
+package.json
