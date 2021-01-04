@@ -2,8 +2,6 @@
 
 > Speeds up the processing of laptops donated as a part of Streetcode's [Level Up](https://www.streetcode.us/levelup) initiative.
 
-![Demo Gif](https://github.com/michaelmherrera/levelup/blob/readme-assets/readme-assets/demo.gif)
-
 ## How to Use
 
 [Video Tutorial for MacOS](https://youtu.be/e-yw9VxUHkc) | [Video Tutorial for Windows 10](https://youtu.be/Jq1lJJy4hhM)
@@ -12,3 +10,7 @@
 2. Run the binary. You may get a prompt from your system to allow the program to connect to the network. You can deny it network access because it doesn't actually use the network.
 3. A webpage should automatically open in your browser. If not, browse to http://localhost:8080
 4. Follow the instructions on the page
+
+## Demo
+
+![Demo Gif](https://github.com/michaelmherrera/levelup/blob/readme-assets/readme-assets/demo.gif)
