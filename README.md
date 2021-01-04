@@ -2,6 +2,8 @@
 
 > Speeds up the processing of laptops donated as a part of Streetcode's [Level Up](https://www.streetcode.us/levelup) initiative.
 
+![Demo Gif](https://github.com/michaelmherrera/levelup/blob/readme-assets/readme-assets/demo.gif)
+
 ## How to Use
 
 [Video Tutorial for MacOS](https://youtu.be/e-yw9VxUHkc) | [Video Tutorial for Windows 10](https://youtu.be/Jq1lJJy4hhM)
